@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Radzen.Blazor
+@inherits LayoutComponentBase
+@inject ExampleService ExampleService
+@inject NavigationManager UriHelper
+@inject IJSRuntime JSRuntime
+
+<RadzenComponents />
+
+<RadzenLayout>
+    <RadzenBody Class="rz-m-0 rz-p-0 rz-border-radius-0">
+        <RadzenContentContainer Name="main">
+            @Body
+        </RadzenContentContainer>
+    </RadzenBody>
+</RadzenLayout>
+
+@code {
+
+    IEnumerable<Example> examples;
+
+    protected override void OnInitialized()
+    {
+
+        examples = ExampleService.Examples;
+
+        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+    }
+}
